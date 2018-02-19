@@ -1,0 +1,38 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
+    implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: "$retrofitVersion"
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-moshi
+    implementation group: 'com.squareup.retrofit2', name: 'converter-moshi', version: "$retrofitVersion"
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/adapter-rxjava2
+    implementation group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: "$retrofitVersion"
+
+    // https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp
+    implementation group: 'com.squareup.okhttp3', name: 'okhttp', version: "$okhttpVersion"
+
+    // https://mvnrepository.com/artifact/com.squareup.moshi/moshi
+    implementation group: 'com.squareup.moshi', name: 'moshi', version: "$moshiVersion"
+
+    // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
+    implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "$rxJava2Version"
+
+    // https://mvnrepository.com/artifact/junit/junit
+    testImplementation group: 'junit', name: 'junit', version: "$junitVersion"
+
+    // https://mvnrepository.com/artifact/org.mockito/mockito-core
+    testCompile group: 'org.mockito', name: 'mockito-core', version: "$mockitoCoreVersion"
+
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-stdlib-jdk7
+    implementation group: 'org.jetbrains.kotlin', name: 'kotlin-stdlib-jdk7', version: "$kotlin_version"
+
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"
+
