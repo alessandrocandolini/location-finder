@@ -1,0 +1,3 @@
+package com.alessandrocandolini.reactive.data
+
+interface GoogleResponse

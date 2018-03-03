@@ -1,7 +1,8 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
-apply plugin: 'org.jetbrains.dokka'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'jacoco'
+apply plugin: 'org.jetbrains.dokka'
 
 dokka {
     outputFormat = 'html'
@@ -16,6 +17,11 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation project(":entities")
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    // NETWORK
 
     // https://mvnrepository.com/artifact/com.squareup.retrofit2/retrofit
     implementation group: 'com.squareup.retrofit2', name: 'retrofit', version: "$retrofitVersion"
@@ -32,11 +38,25 @@ dependencies {
     // https://mvnrepository.com/artifact/com.squareup.moshi/moshi
     implementation group: 'com.squareup.moshi', name: 'moshi', version: "$moshiVersion"
 
+    // RX
+
     // https://mvnrepository.com/artifact/io.reactivex.rxjava2/rxjava
     implementation group: 'io.reactivex.rxjava2', name: 'rxjava', version: "$rxJava2Version"
 
     // https://mvnrepository.com/artifact/com.jakewharton.rxbinding2/rxbinding
     implementation group: 'com.jakewharton.rxbinding2', name: 'rxbinding', version: "$rxbindingVersion"
+
+
+    // ==== DAGGER ====
+
+    // https://mvnrepository.com/artifact/com.google.dagger/dagger
+    implementation group: 'com.google.dagger', name: 'dagger', version: "$dagger2Version"
+
+    // https://mvnrepository.com/artifact/com.google.dagger/dagger-compiler
+    kapt group: 'com.google.dagger', name: 'dagger-compiler', version: "$dagger2Version"
+    kaptTest group: 'com.google.dagger', name: 'dagger-compiler', version: "$dagger2Version"
+
+    // TEST
 
     // https://mvnrepository.com/artifact/junit/junit
     testImplementation group: 'junit', name: 'junit', version: "$junitVersion"
@@ -47,6 +67,47 @@ dependencies {
     // https://mvnrepository.com/artifact/io.kotlintest/kotlintest
     testImplementation group: 'io.kotlintest', name: 'kotlintest', version: "$kotlintestVersion"
 
+    // ==== WIREMOCK ==
+
+    // https://mvnrepository.com/artifact/com.github.tomakehurst/wiremock
+    testImplementation group: 'com.github.tomakehurst', name: 'wiremock', version: "$wiremockVersion"
+
+    // https://mvnrepository.com/artifact/org.slf4j/slf4j-nop
+    // to prevent SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder" with wiremock (only in test)
+    testImplementation group: 'org.slf4j', name: 'slf4j-nop', version: '1.7.25'
+
+    // Apache commons, for:
+    // - html parsing faster that Html.fromHtml() and purely java
+    // - base64 in pure java way
+    // - typeutils in envelop converter
+    testImplementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.6'
+
+
+    testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+
+}
+buildscript {
+    ext.kotlin_version = '1.2.30'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+repositories {
+    mavenCentral()
+}
+compileKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+compileTestKotlin {
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 

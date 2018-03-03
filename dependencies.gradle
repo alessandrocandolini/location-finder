@@ -12,9 +12,11 @@ ext {
     moshiVersion = '1.5.0'
     rxJava2Version = '2.1.9'
     rxbindingVersion = '2.1.1'
+    dagger2Version = '2.14.1'
 
     junitVersion = '4.12'
     mockitoCoreVersion = '2.15.0'
     kotlintestVersion = '2.0.7'
+    wiremockVersion = '2.15.0'
 
 }

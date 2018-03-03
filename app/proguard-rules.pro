@@ -1,9 +1,13 @@
 # Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
+# By default, the flags in this file are appended to flags specified
+# in /Users/harpreet.tatla/Library/Android/sdk/tools/proguard/proguard-android.txt
+# You can edit the include path and order by changing the proguardFiles
+# directive in build.gradle.
 #
 # For more details, see
 #   http://developer.android.com/guide/developing/tools/proguard.html
+
+# Add any project specific keep options here:
 
 # If your project uses WebView with JS, uncomment the following
 # and specify the fully qualified class name to the JavaScript interface
@@ -19,3 +23,60 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Dagger-android
+# ErrorProne annotations have no use at runtime, so it's fine to ignore them in Proguard.
+# refer to https://github.com/google/dagger/issues/645
+-dontwarn com.google.errorprone.annotations.*
+
+# Retrofit
+# Refer to http://square.github.io/retrofit/
+# Platform calls Class.forName on types which do not exist on Android to determine platform.
+-dontnote retrofit2.Platform
+# Platform used when running on Java 8 VMs. Will not be used at runtime.
+-dontwarn retrofit2.Platform$Java8
+# Retain generic type information for use by reflection by converters and adapters.
+-keepattributes Signature
+# Retain declared checked exceptions for use by a Proxy instance.
+-keepattributes Exceptions
+
+# Okio
+# Refer to official repo: https://github.com/square/okio
+-dontwarn okio.**
+-dontnote okio.**
+
+# Okhttp
+# Refer to this issue on official repo: https://github.com/square/okhttp/issues/2230
+-dontwarn okhttp3.**
+-dontnote okhttp3.**
+
+# Ignore http warnings to not poison the logs
+-dontnote android.net.http.*
+-dontnote org.apache.commons.codec.**
+-dontnote org.apache.http.**
+
+# Ignor warning on unsafe
+-dontnote sun.misc.Unsafe
+
+
+# Kotlin
+# https://stackoverflow.com/questions/44161717/proguard-and-kotlin-reflect-kotlin-annotations
+-dontwarn kotlin.reflect.jvm.internal.impl.descriptors.CallableDescriptor
+-dontwarn kotlin.reflect.jvm.internal.impl.descriptors.ClassDescriptor
+-dontwarn kotlin.reflect.jvm.internal.impl.descriptors.ClassifierDescriptorWithTypeParameters
+-dontwarn kotlin.reflect.jvm.internal.impl.descriptors.annotations.AnnotationDescriptor
+-dontwarn kotlin.reflect.jvm.internal.impl.descriptors.impl.PropertyDescriptorImpl
+-dontwarn kotlin.reflect.jvm.internal.impl.load.java.JavaClassFinder
+-dontwarn kotlin.reflect.jvm.internal.impl.resolve.OverridingUtil
+-dontwarn kotlin.reflect.jvm.internal.impl.types.DescriptorSubstitutor
+-dontwarn kotlin.reflect.jvm.internal.impl.types.DescriptorSubstitutor
+-dontwarn kotlin.reflect.jvm.internal.impl.types.TypeConstructor
+
+# JSR 305 annotations
+-dontwarn javax.annotation.**
+
+# Moshi
+-keepclassmembers class ** {
+  @com.squareup.moshi.FromJson *;
+  @com.squareup.moshi.ToJson *;
+}
