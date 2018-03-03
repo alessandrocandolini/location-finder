@@ -1,5 +1,16 @@
 apply plugin: 'java-library'
 apply plugin: 'kotlin'
+apply plugin: 'jacoco'
+apply plugin: 'org.jetbrains.dokka'
+
+jacoco {
+    toolVersion = '0.8.0'
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

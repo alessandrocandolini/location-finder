@@ -4,6 +4,19 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'jacoco'
+
+apply plugin: 'org.jetbrains.dokka'
+
+jacoco {
+    toolVersion = '0.8.0'
+}
+
+dokka {
+    outputFormat = 'html'
+    outputDirectory = "$buildDir/javadoc"
+}
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
     defaultConfig {
@@ -15,8 +28,17 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            minifyEnabled false
+            shrinkResources false
+            debuggable true
+            testCoverageEnabled true
+        }
         release {
             minifyEnabled true
+            shrinkResources true
+            debuggable false
+            testCoverageEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
