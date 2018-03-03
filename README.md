@@ -1,5 +1,7 @@
 # location-finder
 
+[![codecov](https://codecov.io/gh/alessandrocandolini/location-finder/branch/master/graph/badge.svg?token=qAWlcrhxK0)](https://codecov.io/gh/alessandrocandolini/location-finder)
+
 Sample application to display on the fly a list of matching addresses from geolocation updates and/or manual inputs.
 
 The app relies on the google geodicing api endpoint.
