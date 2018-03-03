@@ -4,7 +4,7 @@
 
 Sample application to display on the fly a list of matching addresses from geolocation updates and/or manual inputs.
 
-The app relies on the google geodicing api endpoint.
+The app relies on the google geocoding api public endpoint: https://developers.google.com/maps/documentation/geocoding/intro
 
 The project is used for a comparison of different approaches to handle concurrent, asynchrnous sources of data (that require synchronisation, merging strategy, debouncing, timeout, consistent error handling, etc) 
 * java 7 concurrency primitives 
