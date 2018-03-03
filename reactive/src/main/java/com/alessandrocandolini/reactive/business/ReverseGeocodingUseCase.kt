@@ -1,12 +1,10 @@
 package com.alessandrocandolini.reactive.business
 
-import io.reactivex.Single
+import com.alessandrocandolini.entities.domain.Addresses
+import com.alessandrocandolini.entities.domain.GeoCoordinates
+import io.reactivex.ObservableTransformer
 
 /**
- * Created by alessandroc on 19/02/2018.
+ * Convert a stream of latitude and longitude coordinates into an address
  */
-interface ReverseGeocodingUseCase {
-
-    fun reverseGeocoding(latitude : Double, longitude : Double) : Single<Addresses>
-
-}
+interface ReverseGeocodingUseCase : ObservableTransformer<GeoCoordinates, Addresses>

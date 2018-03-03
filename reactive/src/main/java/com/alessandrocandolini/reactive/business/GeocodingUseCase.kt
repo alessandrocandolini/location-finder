@@ -1,12 +1,14 @@
 package com.alessandrocandolini.reactive.business
 
-import io.reactivex.Single
+import com.alessandrocandolini.entities.domain.Addresses
+import io.reactivex.ObservableTransformer
 
 /**
- * Created by alessandroc on 19/02/2018.
+ * Converts upstream of [AddressHint] into streams of corresponding [Addresses]
  */
-interface GeocodingUseCase {
+interface GeocodingUseCase : ObservableTransformer<AddressHint,Addresses>
 
-    fun geocode(address : String) : Single<Addresses>
-
-}
+/**
+ * Alias to express address hints
+ */
+typealias AddressHint = String

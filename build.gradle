@@ -1,24 +1,23 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
+apply from: 'dependencies.gradle'
 
 buildscript {
     ext {
-        kotlin_version = '1.2.21'
-        supportLibraryVersion = '27.0.2'
-        retrofitVersion = '2.3.0'
-        okhttpVersion = '3.9.1'
-        moshiVersion = '1.5.0'
-        rxJava2Version = '2.1.9'
-        junitVersion = '4.12'
-        mockitoCoreVersion = '2.15.0'
-
+        kotlin_version = '1.2.30'
+        dokka_version = '0.9.16'
     }
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // https://mvnrepository.com/artifact/org.jetbrains.dokka/dokka-gradle-plugin
+        classpath group: 'org.jetbrains.dokka', name: 'dokka-gradle-plugin', version: "$dokka_version"
+
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -29,6 +28,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
     }
 }
 

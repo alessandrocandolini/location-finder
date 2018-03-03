@@ -1,5 +1,6 @@
 package com.alessandrocandolini.reactive.view
 
+import com.alessandrocandolini.entities.data.*
 import io.reactivex.Observable
 
 /**
@@ -13,15 +14,15 @@ interface LocationContract {
 
         fun refresh(): Observable<Refresh>
 
-        fun click(): Observable<Click>
+        fun click(): Observable<SelectLocation>
 
-        fun render(viewStates : ViewStates) : Unit
+        fun render(viewStates : ViewStates)
     }
 
 
     interface Presenter {
 
-        
+
 
     }
 
